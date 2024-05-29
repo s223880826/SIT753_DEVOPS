@@ -1,17 +1,17 @@
 pipeline {
     agent any
-
+ 
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                script {
-                    bat 'mkdir build'
-        			bat 'xcopy /E /I *.html build'
-        			bat 'xcopy /E /I css build\\css'
-        			bat 'xcopy /E /I js build\\js'
-        			bat 'xcopy /E /I images build\\images'
-        			bat 'cd build && powershell Compress-Archive -Path * -DestinationPath ..\\wonderful_adventure.html'
-        			archiveArtifacts artifacts: 'wonderful_adventure.html', fingerprint: true
-                }
+                git url: 'https://github.com/s223880826/SIT753_DEVOPS.git', branch: 'main'
             }
         }
+ 
+        stage('Build') {
+            steps {
+                echo 'Hello, Jenkins!'
+            }
+        }
+    }
+}
