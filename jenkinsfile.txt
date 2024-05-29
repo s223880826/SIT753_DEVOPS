@@ -1,16 +1,17 @@
 pipeline {
     agent any
-	stage('Build') {
-    		steps {
-			script {
-        			bat 'mkdir build'
+
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    bat 'mkdir build'
         			bat 'xcopy /E /I *.html build'
         			bat 'xcopy /E /I css build\\css'
         			bat 'xcopy /E /I js build\\js'
         			bat 'xcopy /E /I images build\\images'
-        			bat 'cd build && powershell Compress-Archive -Path * -DestinationPath ..\\html-package.zip'
-        			archiveArtifacts artifacts: 'html-package.zip', fingerprint: true
-    				}
-			}
-			}
-}
+        			bat 'cd build && powershell Compress-Archive -Path * -DestinationPath ..\\wonderful_adventure.html'
+        			archiveArtifacts artifacts: 'wonderful_adventure.html', fingerprint: true
+                }
+            }
+        }
