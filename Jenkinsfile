@@ -75,7 +75,7 @@ pipeline {
                     // This is a placeholder, actual commands depend on your operational setup.
                 }
             }
-            
+         }   
     }
  
     post {
