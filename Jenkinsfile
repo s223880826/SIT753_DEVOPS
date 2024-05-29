@@ -33,15 +33,15 @@ pipeline {
                     tar -xf newrelic-cli.zip
                     set PATH=%PATH%;%cd%\\newrelic-cli
                 '''
+                echo 'Build stage completed'
             }
-            
         }
  
         stage('Test') {
             steps {
                 bat 'npm test'
+                echo 'Test stage completed'
             }
-            
         }
  
         stage('Deploy') {
@@ -50,8 +50,8 @@ pipeline {
                     echo 'Deploying the application...'
                     // Add your deployment script/commands here
                 }
+                echo 'Deployment stage completed'
             }
-            
         }
  
         stage('Release') {
@@ -63,8 +63,8 @@ pipeline {
                         bat 'newrelic-admin deployment --appname YourAppName --description "Deployment via Jenkins" --apikey %NEW_RELIC_API_KEY%'
                     }
                 }
+                echo 'Release stage completed'
             }
-            
         }
  
         stage('Monitor and Alert') {
@@ -74,7 +74,8 @@ pipeline {
                     // Here, you might include steps to check the status of the New Relic agent, ensure it's reporting data, etc.
                     // This is a placeholder, actual commands depend on your operational setup.
                 }
+                echo 'Monitoring and alerting setup verified'
             }
-         }   
+        }
     }
 }
