@@ -34,22 +34,14 @@ pipeline {
                     set PATH=%PATH%;%cd%\\newrelic-cli
                 '''
             }
-            post {
-                always {
-                    echo 'Build stage completed'
-                }
-            }
+            
         }
  
         stage('Test') {
             steps {
                 bat 'npm test'
             }
-            post {
-                always {
-                    echo 'Test stage completed'
-                }
-            }
+            
         }
  
         stage('Deploy') {
@@ -59,11 +51,7 @@ pipeline {
                     // Add your deployment script/commands here
                 }
             }
-            post {
-                always {
-                    echo 'Deployment stage completed'
-                }
-            }
+            
         }
  
         stage('Release') {
@@ -76,11 +64,7 @@ pipeline {
                     }
                 }
             }
-            post {
-                always {
-                    echo 'Release stage completed'
-                }
-            }
+            
         }
  
         stage('Monitor and Alert') {
@@ -91,12 +75,7 @@ pipeline {
                     // This is a placeholder, actual commands depend on your operational setup.
                 }
             }
-            post {
-                always {
-                    echo 'Monitoring and alerting setup verified'
-                }
-            }
-        }
+            
     }
  
     post {
